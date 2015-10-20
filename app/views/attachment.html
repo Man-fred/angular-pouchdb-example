@@ -1,0 +1,25 @@
+<form ng-submit="add(model)">
+    <input type="text" ng-model="model.title">
+    <input type="test" id="jq-datepicker" ng-model="model.date">
+    <button class="btn" type="submit">Add</button>
+</form>
+
+<ul>
+    <li ng-repeat="doc in docs">
+        <div ng-if="!doc.editMode">
+            {{doc.title}}<br>
+            {{doc.date| date:'mediumDate'}}<br>
+            {{namesString}}<br>
+        </div>
+        <div ng-if="doc.editMode">
+            <form ng-submit="edit(doc)">
+                <input type="text" ng-model="doc.title">
+                <input type="text" id="jq-datepicker-e" ng-model="doc.date">
+                <input type="file" multiple onchange="angular.element(this).scope().fileNameChanged(this)">
+                <div ng-controller = "myCtrl"></div>
+                <button class="btn" type="submit">Save</button>
+            </form>
+        </div>
+        <div ng-include="'views/_doc.html'"></div>
+    </li>
+</ul>

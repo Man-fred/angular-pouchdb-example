@@ -8,17 +8,16 @@
  * Controller of the pouchTestApp
  */
 angular.module('pouchTestApp')
-        .controller('MainCtrl', function ($scope, $rootScope, $filter, pouchdb) {
+        .controller('AttachmentCtrl', function ($scope, $rootScope, $filter, pouchdb) {
             $scope.docs = [];
             $scope.logs = [];
-
             $scope.add = function (todo) {
+                var $dateISO = moment(todo.date, "DD.MM.YYYY");
                 var doc = {
-                    type: 'todo',
+                    type: 'attachment',
                     title: todo.title,
                     date: todo.date,
-                    dateISO: todo.date.toISOString(),
-                    done: false,
+                    dateISO: $dateISO.toISOString(),
                     createdAt: new Date().getTime(),
                     _id: new Date().toISOString()
                 };
@@ -31,7 +30,7 @@ angular.module('pouchTestApp')
                                         //todo._rev = responseGet.rev;
                                         responseGet.date = new Date(responseGet.dateISO);
                                         $scope.docs.unshift(responseGet);
-                                        //console.log(responseGet, $scope.docs);
+                                        //console.log(responseGet, $scope.todos);
                                         $rootScope.$apply();
                                     });
                         });
@@ -51,16 +50,14 @@ angular.module('pouchTestApp')
 
             $scope.edit = function (todo) {
                 todo.editedAt = new Date().getTime();
-                todo.editMode = false;
                 todo.dateISO = todo.date.toISOString();
-                delete todo.editMode;
                 //console.log(todo);
 
                 pouchdb.put(todo, todo._id, todo._rev)
                         .then(function (response) {
                             todo.editMode = false;
-                            todo._rev = response._rev;
-                            console.log(todo);
+                            todo._rev = response.rev;
+                            //console.log(todo);
                             $rootScope.$apply();
                         });
             };
@@ -73,7 +70,7 @@ angular.module('pouchTestApp')
                 }).then(function (result) {
                     console.log(result);
                     pouchdb.find({
-                        selector: {type: 'todo', title: {'$exists': true}},
+                        selector: {type: 'attachment', title: {'$exists': true}},
                         //, fields: ['_id', 'name'],
                         sort: [{type: 'asc'}, {title: 'asc'}]
                     }).then(function (resultFind) {
@@ -89,18 +86,9 @@ angular.module('pouchTestApp')
                     });
                     // yo, a result
                 }).catch(function (err) {
+                        console.log(err);
                     // ouch, an error
                 });
-            };
-
-            $scope.fileNameChanged = function (ele) {
-                var $todo_files = ele.files;
-                var $namesArr = [];
-                //for i in [0...files.length]
-                $namesArr.push(ele.files[0].name);
-                $namesArr.push(ele.files[1].name);
-                $scope.namesString = $namesArr.join(' ,');
-                $scope.$apply();
             };
             $scope.logsListener = (function () {
                 pouchdb.changes({
@@ -110,7 +98,20 @@ angular.module('pouchTestApp')
                     $rootScope.$apply();
                 });
             })();
+           $scope.fileNameChanged = function (ele) {
+                var $todo_files = ele.files;
+                var $namesArr = [];
+                //for i in [0...files.length]
+                $namesArr.push(ele.files[0].name);
+                $namesArr.push(ele.files[1].name);
+                $scope.namesString = $namesArr.join(' ,');
+                $scope.$apply();
+            };
 
             //$scope.getAll();
+            $("#jq-datepicker").datepicker({
+                dateFormat: "dd.mm.yy"
+            });
+
             $scope.find();
         });

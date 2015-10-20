@@ -1,0 +1,224 @@
+.browsehappy {
+  margin: 0.2em 0;
+  background: #ccc;
+  color: #000;
+  padding: 0.2em 0; }
+
+/* Space out content a bit */
+body {
+  padding-top: 20px;
+  padding-bottom: 20px; }
+
+/* input[type="text"] {
+   padding: 2px 10px; 
+   height: 1.3em; 
+   font-size: 1.1em;
+   border-radius: 10px;
+   outline: none // keine blaue Umrandung beim Fokus
+}
+
+label {
+    display: inline-block;
+    width: 6em; 
+}*/
+form div {
+  border: none; }
+
+fieldset {
+  width: 95%;
+  padding: 1em;
+  background: #efefef;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  /* Webkit */
+  background: -webkit-gradient(linear, left top, left bottom, from(white), to(lightgray));
+  /* Firefox */
+  background: -moz-linear-gradient(top, white, lightgray);
+  /* Internet Explorer < 8 */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#FFFFFF, endColorstr=#EFEFEF);
+  /* IE 8 */
+  -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#FFFFFF, endColorstr=#EFEFEF)"; }
+
+legend {
+  background: white;
+  padding: 0.6em;
+  border: 1px solid lightgray;
+  -webkit-box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: inset 2px 2px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: inset 2px 2px 3px rgba(0, 0, 0, 0.1);
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px; }
+
+label {
+  width: 6em;
+  display: inline-block;
+  text-align: right; }
+
+div > label:first-child {
+  width: 8em;
+  text-align: left;
+  padding-top: 0.3em;
+  vertical-align: top; }
+
+input, select, textarea {
+  width: 30em;
+  padding: 0.3em;
+  border: 1px solid lightgray;
+  -webkit-box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.1);
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px; }
+
+input:hover, select:hover, textarea:hover {
+  background: #ffc;
+  border: 1px solid #555;
+  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); }
+
+input:focus, select:focus, textarea:focus {
+  border: 1px solid lightgray;
+  -webkit-box-shadow: 0 0 10px rgba(32, 204, 255, 0.7);
+  -moz-box-shadow: 0 0 10px rgba(32, 204, 255, 0.7);
+  box-shadow: 0 0 10px rgba(32, 204, 255, 0.7);
+  outline: none; }
+
+input#strasse {
+  width: 18em; }
+
+input#ort {
+  width: 17em; }
+
+input[type="checkbox"], input[type="radio"] {
+  width: auto;
+  border: none;
+  /* IE */ }
+
+.form_short {
+  width: 10em; }
+
+.form_4 {
+  width: 4em; }
+
+.form_5 {
+  width: 5em; }
+
+.form_check label {
+  display: inline; }
+
+label[for^="news"] {
+  display: inline; }
+
+.form_check input {
+  margin-left: 7em; }
+
+input#news_ja, input#news_nein {
+  margin-left: 7em; }
+
+input[type="submit"], input[type="reset"], input[type="button"] {
+  width: 10em;
+  padding: 0.6em;
+  background: #fafafa;
+  border: 1px solid #aaa;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
+  /* Webkit */
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.1, #fafafa), color-stop(1, #cccccc));
+  /* Firefox */
+  background-image: -moz-linear-gradient(top, #fafafa 10%, #cccccc 100%);
+  -webkit-box-shadow: 0px 0px 5px rgba(255, 255, 255, 0.8);
+  -moz-box-shadow: 0px 0px 5px rgba(255, 255, 255, 0.8);
+  box-shadow: 0px 0px 5px rgba(255, 255, 255, 0.8);
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.8); }
+
+input[type="submit"] {
+  /*margin-left: 10em;
+  margin-right: 0.2em;*/
+  font-weight: bold; }
+
+input[type="submit"]:hover, input[type="submit"]:focus {
+  border-color: #3a3;
+  color: #3a3; }
+
+input[type="reset"]:hover, input[type="reset"]:focus {
+  border-color: #f55;
+  color: #f55; }
+
+input[type="button"]:hover, input[type="button"]:focus {
+  border-color: #f55;
+  color: #f55; }
+
+input[type="button"]:active,
+input[type="submit"]:active,
+input[type="reset"]:active {
+  /* Webkit */
+  background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.1, #fafafa), color-stop(1, #cccccc));
+  /* Firefox */
+  background-image: -moz-linear-gradient(bottom, #fafafa 10%, #cccccc 100%); }
+
+/* Everything but the jumbotron gets side spacing for mobile first views */
+.header,
+.marketing,
+.footer {
+  padding-left: 15px;
+  padding-right: 15px; }
+
+/* Custom page header */
+.header {
+  border-bottom: 1px solid #e5e5e5;
+  /* Make the masthead heading the same height as the navigation */ }
+  .header h3 {
+    margin-top: 0;
+    margin-bottom: 0;
+    line-height: 40px;
+    padding-bottom: 19px; }
+
+/* Custom page footer */
+.footer {
+  padding-top: 19px;
+  color: #777;
+  border-top: 1px solid #e5e5e5; }
+
+.container-narrow > hr {
+  margin: 30px 0; }
+
+/* Main marketing message and sign up button */
+.jumbotron {
+  text-align: center;
+  border-bottom: 1px solid #e5e5e5; }
+  .jumbotron .btn {
+    font-size: 21px;
+    padding: 14px 24px; }
+
+/* Supporting marketing content */
+.marketing {
+  margin: 40px 0; }
+  .marketing p + h4 {
+    margin-top: 28px; }
+
+/* Responsive: Portrait tablets and up */
+@media screen and (min-width: 768px) {
+  .container {
+    max-width: 730px; }
+
+  /* Remove the padding we set earlier */
+  .header,
+  .marketing,
+  .footer {
+    padding-left: 0;
+    padding-right: 0; }
+
+  /* Space out the masthead */
+  .header {
+    margin-bottom: 30px; }
+
+  /* Remove the bottom border on the jumbotron for visual effect */
+  .jumbotron {
+    border-bottom: 0; } }
+
+/*# sourceMappingURL=main.css.map */

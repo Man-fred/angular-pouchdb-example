@@ -1,24 +1,32 @@
 <form ng-submit="add(model)">
-  <input type="text" ng-model="model.title">
-  <button class="btn" type="submit">Add</button>
+    <input type="text" ng-model="model.title">
+    <input type="date" ng-model="model.date">
+    <button class="btn" type="submit">Add</button>
 </form>
 
 <ul>
-  <li ng-repeat="todo in todos">
-    <div ng-if="!todo.editMode">
-      {{todo.doc.title}}<br>
-    </div>
-    <div ng-if="todo.editMode">
-      <form ng-submit="edit(todo)">
-        <input type="text" ng-model="todo.doc.title">
-        <button class="btn" type="submit">edit</button>
-      </form>
-    </div>
-    {{todo.doc._id}}<br>
-    {{todo.doc.createdAt}}<br>
-    <button class="btn" ng-click="delete(todo.doc, $index)">x</button>
-    <button class="btn" ng-click="todo.editMode = true" ng-if="!todo.editMode">edit</button>
-  </li>
+    <li ng-repeat="todo in todos track by todo._rev">
+        <div ng-if="!todo.editMode">
+            {{todo.title}}<br>
+            {{todo.date| date:'mediumDate'}}<br>
+        </div>
+        <div ng-if="todo.editMode">
+            <form ng-submit="edit(todo)">
+                <input type="text" ng-model="todo.title">
+                <input type="date" ng-model="todo.date">
+                <input type="file" multiple onchange="angular.element(this).scope().fileNameChanged(this)">
+                <div ng-controller = "myCtrl">
+                </div>
+                <button class="btn" type="submit">Save</button>
+            </form>
+        </div>
+        ID: {{todo._id}}<br>
+        Done: {{todo.done}}<br>
+        editedAt:{{todo.editedAt| date:'medium'}}<br>
+        createdAt:{{todo.createdAt| date:'medium'}}<br>
+        <button class="btn" ng-click="delete(todo, $index)">x</button>
+        <button class="btn" ng-click="todo.editMode = true" ng-if="!todo.editMode">edit</button>
+    </li>
 </ul>
 
 <hr>
@@ -26,9 +34,9 @@
 <button class="btn" ng-click="showLogs = !showLogs">toggle Logs</button>
 <br><br>
 <div ng-show="showLogs">
-  <ul>
-    <li ng-repeat="log in logs | orderBy:'seq':true">
-      <pre>{{log | json}}</pre>
-    </li>
-  </ul>
+    <ul>
+        <li ng-repeat="log in logs| orderBy:'seq':true">
+            <pre>{{log| json}}</pre>
+        </li>
+    </ul>
 </div>

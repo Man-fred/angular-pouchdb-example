@@ -1,0 +1,32 @@
+<!doctype html>
+<html class="no-js">
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+        <link rel="stylesheet" href="bower_components/jquery-ui/jquery-ui.css">
+        <link rel="stylesheet" href="styles/main.css">
+    </head>
+    <body ng-app="pouchTestApp">
+        <div class="container">
+            <div class="header">
+            </div>
+                <input type="text" onclick="testMoment()" id="jq-datepicker" ng-model="attachment.date">
+
+        </div>
+        <script src="bower_components/jquery/dist/jquery.js"></script>
+        <script src="bower_components/jquery-ui/jquery-ui.min.js"></script>
+        <script src="bower_components/moment.js"></script>
+        <script>
+                        $("#jq-datepicker").datepicker({
+                dateFormat: "dd.mm.yy"
+            });
+function testMoment() {
+    var $test = document.getElementById("jq-datepicker");
+    console.log($test);
+}
+
+        </script>
+    </body>
+</html>

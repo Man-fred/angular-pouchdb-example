@@ -1,0 +1,31 @@
+<form ng-submit="add(model)">
+    <input type="text" ng-model="model.title">
+    <button class="btn" type="submit">Add</button>
+</form>
+
+<ul>
+    <li ng-repeat="doc in docs track by doc._rev">
+        <div ng-if="!doc.editMode">
+            {{doc.title}}<br>
+        </div>
+        <div ng-if="doc.editMode">
+            <form ng-submit="edit(doc)">
+                <input type="text" ng-model="doc.title">
+                <button class="btn" type="submit">Save</button>
+            </form>
+        </div>
+        <div ng-include="'views/_doc.html'"></div>
+    </li>
+</ul>
+
+<hr>
+
+<button class="btn" ng-click="showLogs = !showLogs">toggle Logs</button>
+<br><br>
+<div ng-show="showLogs">
+    <ul>
+        <li ng-repeat="log in logs| orderBy:'seq':true">
+            <pre>{{log| json}}</pre>
+        </li>
+    </ul>
+</div>

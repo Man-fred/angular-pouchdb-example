@@ -1,0 +1,5 @@
+        ID: {{doc._id}}<br>
+        editedAt:{{doc.editedAt| date:'medium'}}<br>
+        createdAt:{{doc.createdAt| date:'medium'}}<br>
+        <button class="btn" ng-click="delete(doc, $index)">delete</button>
+        <button class="btn" ng-click="doc.editMode = true" ng-if="!theme.editMode">edit</button>

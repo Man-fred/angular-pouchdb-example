@@ -1,0 +1,46 @@
+<div class="container">
+    <h1>{{view.h1}}</h1>
+
+    <form novalidate="novalidate" class="form-horizontal">
+        <fieldset>
+            <legend>{{view.form}}</legend>
+            <div class="control-group">
+                <label for="input_item_id">Item:</label>
+                <select id="input_item_id" ng-options="item._id as item.title for item in availableItems" 
+                        ng-model="doc.item_id">
+                </select>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="inputTitle">Title:</label>
+                <select id="inputTitle" ng-options="theme.title as theme.title for theme in availableThemes" 
+                        ng-model="doc.title">
+                </select>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="inputFirstName">Date:</label>
+                <input class="controls" type="text" id="inputFirstName" ng-model="doc.date"/>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="inputChecked">Checked:</label>
+                <input class="controls" type="checkbox" id="inputFirstName" ng-model="doc.checked"/>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="inputFirstName">Cost (€):</label>
+                <input class="controls" type="text" id="inputFirstName" ng-model="doc.cost"/>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="inputLastName">Info:</label>
+                <input class="controls" type="text" id="inputLastName" ng-model="doc.info"/>
+            </div>
+        <div class="control-group">
+            <div class="controls">
+                <input type="button" ng-click="cancel()" class="cancel btn btn-small" value="return to list" />
+                <input ng-click="updateDoc(doc)" type="submit" class="submit btn btn-small btn-primary" value="update" />
+                <input ng-click="editDoc('-1')" type="button" class="btn btn-small" value="create new" />
+            </div>
+        </div>
+        </fieldset>
+    </form>
+    <div ng-include="'views/_doc.html'"></div>
+</div>
+

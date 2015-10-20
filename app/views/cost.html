@@ -1,0 +1,11 @@
+<button ng-click="editDoc('-1')" class="btn btn-small">create new item</button>
+
+<ul>
+    <li ng-repeat="doc in docs track by doc._rev">
+        <div>
+            <input ng-click="deleteDoc(doc)" type="button" class="btn btn-small btn-danger" value="delete" />
+            <input ng-click="editDoc(doc._id)" type="submit" class="btn btn-small btn-primary" value="edit" />
+            {{doc.title}} ({{doc.date}})
+        </div>
+    </li>
+</ul>
