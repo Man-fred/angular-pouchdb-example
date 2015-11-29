@@ -68,13 +68,13 @@ angular.module('pouchTestApp')
                         fields: ['type', 'title', '_id']
                     }
                 }).then(function (result) {
-                    console.log(result);
+                    //console.log(result);
                     pouchdb.find({
                         selector: {type: 'attachment', title: {'$exists': true}},
                         //, fields: ['_id', 'name'],
                         sort: [{type: 'asc'}, {title: 'asc'}]
                     }).then(function (resultFind) {
-                        console.log(resultFind);
+                        //console.log(resultFind);
                         for (var row in resultFind.docs) {
                             resultFind.docs[row].date = new Date(resultFind.docs[row].dateISO)
                         }

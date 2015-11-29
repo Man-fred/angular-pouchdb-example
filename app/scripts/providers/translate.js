@@ -1,12 +1,5 @@
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
-//     <script src="bower_components/angular/angular-translate.js"></script>
-
- var $dummy = function($translateProvider) {
+ angular.module('pouchTestApp').config(function($translateProvider) {
     // Our translations will go in here
     $translateProvider
     .translations('en', {
@@ -22,5 +15,5 @@
       BUTTON_TEXT_DE: 'deutsch'
     });
     $translateProvider.preferredLanguage('en');
-  };
+  });
 

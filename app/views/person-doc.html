@@ -1,0 +1,34 @@
+<div class="container">
+    <h1>{{view.h1}}</h1>
+
+    <form novalidate="novalidate" class="form-horizontal">
+        <fieldset>
+            <legend>{{view.form}}</legend>
+            <div class="control-group">
+                <label class="control-label" for="inputTitle">Name:</label>
+                <input class="controls" type="text" id="inputTitle" ng-model="doc.title"/>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="inputLastName">Name:</label>
+                <input class="controls" type="text" id="inputLastName" ng-model="doc.lastname"/>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="inputSurname">Surname:</label>
+                <input class="controls" type="text" id="inputSurname" ng-model="doc.surname"/>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="inputDate">Date of Birth:</label>
+                <input class="controls" type="text" id="inputDate" ng-model="doc.date"/>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="inputLastName">Info:</label>
+                <input class="controls" type="text" id="inputLastName" ng-model="doc.info"/>
+            </div>
+            <div ng-include="'views/_doc.html'"></div>
+        </fieldset>
+    </form>
+</div>
+<script>
+$( "#inputDate" ).datepicker({ inline: true });
+</script>
+

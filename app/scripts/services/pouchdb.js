@@ -19,19 +19,34 @@ angular.module('pouchTestApp')
             pdb.doc = $q.defer();
             pdb.doc.resolve(pdb.db);
             pdb.doc.reject(pdb.db);
-            pdb.connect = pdb.doc.promise;
+            pdb.connect = function() { return pdb.doc; };
             //console.log(pdb.doc);
 
-            pdb.createIndex = function (result) {
-                return result.createIndex({
+            pdb.createIndex = function () {
+                return pdb.db.createIndex({
                     index: {
                         fields: ['type', 'title', '_id']
                     }
                 })
-                        .then(function (result2) {
-                            return result.createIndex({
+                        .then(function () {
+                            return pdb.db.createIndex({
                                 index: {
-                                    fields: ['type', 'item', '_id']
+                                    fields: ['type', 'title', 'item_id', '_id']
+                                }
+                            });
+                        })
+                        .then(function () {
+                            return pdb.db.createIndex({
+                                index: {
+                                    fields: ['type', 'title', 'theme_id', '_id']
+                                }
+                            });
+                        })
+                        .then(function () {
+                            return pdb.db.createIndex({
+                                index: {
+                                    //fields: ['title', 'item_id', '_id']
+                                    fields: ['dateISO', 'checked', 'type']
                                 }
                             });
                         });
@@ -40,18 +55,19 @@ angular.module('pouchTestApp')
             pdb.findDocs = function (contr, filter) {
                 //console.log(pdb.doc);
                 //var findDocs = pdb.doc.promise;
-                return pdb.connect.then(
-                        function (result) {
-                            return pdb.createIndex(result);
-                        },
-                        function (error) {
-                            console.log(error);
-                        }).then(
-                        function () {
-                            var selector = [
-                                        {type: contr}, 
-                                        {title: {'$exists': true}}
-                                    ];
+                return pdb.createIndex()
+                        .then(function () {
+                            if (contr) {
+                                var selector = [
+                                    {type: contr},
+                                    {title: {'$exists': true}}
+                                ];
+                            } else {
+                                var selector = [
+                                    {type: {'$exists': true}},
+                                    {title: {'$exists': true}}
+                                ];
+                            }
                             if (filter) {
                                 selector = selector.concat(filter);
                             }
@@ -61,9 +77,45 @@ angular.module('pouchTestApp')
                                 sort: [{type: 'asc'}, {title: 'asc'}]
                             });
                             // yo, a result
+                        }).then(
+                        function (resultFind) {
+                            return resultFind.docs;
+                            //for (var row in resultFind.docs) {
+                            //resultFind.docs[row].date = new Date(resultFind.docs[row].dateISO)
+                            //}
                         },
                         function (error) {
+                            // ouch, an error
                             console.log(error);
+                        });
+            };
+
+            pdb.findDocsDate = function (contr, filter) {
+                //console.log(pdb.doc);
+                //var findDocs = pdb.doc.promise;
+                return pdb.createIndex()
+                        .then(function () {
+                            if (contr) {
+                                var selector = [
+                                    {dateISO: {'$exists': true}},
+                                    //{checked: false},
+                                    {type: contr}
+                                ];
+                            } else {
+                                var selector = [
+                                    {dateISO: {'$exists': true}},
+                                    {checked: false}
+                                ];
+                            }
+                            if (filter) {
+                                selector = selector.concat(filter);
+                            }
+                            return pdb.db.find({
+                                selector: {$and: selector},
+                                //, fields: ['_id', 'name'],
+                                sort: [{dateISO: 'asc'}]
+                            });
+                            // yo, a result
                         }).then(
                         function (resultFind) {
                             return resultFind.docs;
@@ -106,10 +158,10 @@ angular.module('pouchTestApp')
             };
 
             pdb.getDoc = function (id) {
-                return pdb.connect.then(
-                        function (result) {
-                            if (id !== "-1")
-                            {
+                //return pdb.connect().then(
+                //        function (result) {
+                //            if (id !== "-1")
+                //            {
                                 return pdb.db.get(id, {include_docs: true})
                                         .then(function (responseGet) {
                                             return responseGet;
@@ -118,12 +170,12 @@ angular.module('pouchTestApp')
                                             // ouch, an error
                                             console.log(err);
                                         });
-                            } else {
+                //            } else {
                                 //var response = {};
-                                return result;
-                            }
-                        }
-                );
+                //                return result;
+                //            }
+                //        }
+            
             };
             pdb.putDoc = function (type, form) {
                 if (!form._id)
@@ -134,6 +186,11 @@ angular.module('pouchTestApp')
                     form._id = new Date().toISOString();
                 } else {
                     form.editedAt = new Date().getTime();
+                }
+                // Sortieren und Filtern ueber ISO-String
+                if (form.date) {
+                    form.dateISO = new Date(form.date.replace( /(\d+)\.(\d+)\.(\d+)/, "$2/$1/$3") );
+                    form.dateISO = form.dateISO.toISOString();
                 }
                 delete form.editMode;
                 return pdb.db.put(form, form._id, form._rev)

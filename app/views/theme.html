@@ -1,31 +1,11 @@
-<form ng-submit="add(model)">
-    <input type="text" ng-model="model.title">
-    <button class="btn" type="submit">Add</button>
-</form>
+<button ng-click="editDoc('-1')" class="btn btn-small">create new item</button>
 
 <ul>
-    <li ng-repeat="doc in docs track by doc._rev">
-        <div ng-if="!doc.editMode">
-            {{doc.title}}<br>
+    <li ng-repeat="doc in docs track by doc._id">
+        <div>
+            <button ng-click="deleteDoc(doc)" class="btn btn-small btn-danger">delete</button>
+            <button ng-click="editDoc(doc._id)" class="btn btn-small btn-primary">edit</button>
+            {{doc.title}}
         </div>
-        <div ng-if="doc.editMode">
-            <form ng-submit="edit(doc)">
-                <input type="text" ng-model="doc.title">
-                <button class="btn" type="submit">Save</button>
-            </form>
-        </div>
-        <div ng-include="'views/_doc.html'"></div>
     </li>
 </ul>
-
-<hr>
-
-<button class="btn" ng-click="showLogs = !showLogs">toggle Logs</button>
-<br><br>
-<div ng-show="showLogs">
-    <ul>
-        <li ng-repeat="log in logs| orderBy:'seq':true">
-            <pre>{{log| json}}</pre>
-        </li>
-    </ul>
-</div>

@@ -8,7 +8,7 @@
  * Controller of the pouchTestApp
  */
 angular.module('pouchTestApp')
-  .controller('TranslateCtrl', function ($scope) {
+  .controller('TranslateCtrl', function ($scope, $translate) {
   $scope.changeLanguage = function (langKey) {
     $translate.use(langKey);
   };

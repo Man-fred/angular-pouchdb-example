@@ -16,7 +16,8 @@ var pouchTestApp = angular
     'ngRoute',
     'ngSanitize',
     'ngTouch',
-    'pouchTestFilters'
+    'pouchTestFilters',
+    'pascalprecht.translate'
   ])
   .config(function ($routeProvider) {
     $routeProvider
@@ -36,6 +37,10 @@ var pouchTestApp = angular
         templateUrl: 'views/theme.html',
         controller: 'ThemeCtrl'
       })
+      .when('/theme-doc/:id', {
+        templateUrl: 'views/theme-doc.html',
+        controller: 'ThemeDocCtrl'
+      })
       .when('/item', {
         templateUrl: 'views/item.html',
         controller: 'ItemCtrl'
@@ -52,6 +57,22 @@ var pouchTestApp = angular
         templateUrl: 'views/cost-doc.html',
         controller: 'CostDocCtrl'
       })
+      .when('/person', {
+        templateUrl: 'views/person.html',
+        controller: 'PersonCtrl'
+      })
+      .when('/person-doc/:id', {
+        templateUrl: 'views/person-doc.html',
+        controller: 'PersonDocCtrl'
+      })
+      .when('/todo', {
+        templateUrl: 'views/todo.html',
+        controller: 'TodoCtrl'
+      })
+      .when('/todo-doc/:id', {
+        templateUrl: 'views/todo-doc.html',
+        controller: 'TodoDocCtrl'
+      })
       .when('/about', {
         templateUrl: 'views/about.html',
         controller: 'AboutCtrl'
@@ -59,7 +80,39 @@ var pouchTestApp = angular
       .otherwise({
         redirectTo: '/main'
       });
+  })
+  .config(function($translateProvider) {
+    // Our translations will go in here
+    $translateProvider
+    .translations('en', {
+      HEADLINE: 'Hello there, This is my awesome app!',
+      INTRO_TEXT: 'And it has i18n support!',
+      BUTTON_TEXT_EN: 'english',
+      BUTTON_TEXT_DE: 'deutsch',
+      COST_H1 : "Costs",
+    })
+    .translations('de', {
+      HEADLINE: 'Hey, das ist meine großartige App!',
+      INTRO_TEXT: 'Und sie untersützt mehrere Sprachen!',
+      BUTTON_TEXT_EN: 'english',
+      BUTTON_TEXT_DE: 'deutsch',
+      Costs : 'Kosten',
+      Item : 'Vertrag',
+      COST_H1 : "Kosten",
+      Theme : 'Thema',
+      Title : 'Titel',
+      Date : 'Datum',
+      Checked : 'Erledigt',
+      
+    })  
+    .registerAvailableLanguageKeys(['en', 'de'], {
+        'en_*': 'en',
+        'de_*': 'de'
+    })
+    .determinePreferredLanguage();
+    //$translateProvider.preferredLanguage('de');
   });
+
 
          pouchTestApp.directive('fileModel', ['$parse', function ($parse) {
             return {

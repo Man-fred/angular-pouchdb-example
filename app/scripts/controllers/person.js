@@ -11,11 +11,11 @@
 'use strict';
 
 angular.module('pouchTestApp')
-        .controller('ThemeCtrl', function ($scope, $rootScope, $filter, pouchdb, pdb, $location) {
+        .controller('PersonCtrl', function ($scope, $rootScope, $filter, pouchdb, pdb, $location) {
 
             $scope.docs = [];
             $scope.logs = [];
-            var ctrlName = 'theme';
+            var ctrlName = 'person';
             $scope.deleteDoc = function (doc) {
                 if (confirm("Wollen Sie den Datensatz löschen?") === true) {
                     pdb.removeDoc(doc)
@@ -40,11 +40,11 @@ angular.module('pouchTestApp')
             };
             $scope.find();
         })
-        .controller('ThemeDocCtrl', function ($scope, $rootScope, $routeParams, pdb, $location) {
+        .controller('PersonDocCtrl', function ($scope, $rootScope, $routeParams, pdb, $location) {
             $scope.view = {
-                h1: 'Theme',
-                form: '',
-                ctrl: 'theme'
+                h1: 'Person',
+                form: 'edit:',
+                ctrl: 'person'
             };
             $scope.deleteDoc = function (doc) {
                 if (confirm("Wollen Sie den Datensatz löschen?") === true) {

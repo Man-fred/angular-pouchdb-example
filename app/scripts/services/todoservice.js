@@ -48,7 +48,7 @@ angular.module('pouchTestApp')
 angular.module('pouchTestApp').factory('routeNavigation', function ($location) {
     var routes = [
         {
-            name: 'ToDo',
+            name: 'Main',
             sub: [
                 {
                     templateUrl: 'item',
@@ -58,6 +58,18 @@ angular.module('pouchTestApp').factory('routeNavigation', function ($location) {
                     templateUrl: 'theme',
                     controller: 'Themes'
                 },
+                {
+                    templateUrl: 'person',
+                    controller: 'Persons'
+                },
+                {
+                    templateUrl: 'cost',
+                    controller: 'Costs'
+                },
+                {
+                    templateUrl: 'todo',
+                    controller: 'Todos'
+                },
             ]
         },
         {
@@ -66,6 +78,10 @@ angular.module('pouchTestApp').factory('routeNavigation', function ($location) {
                 {
                     templateUrl: 'about',
                     controller: 'About'
+                },
+                {
+                    templateUrl: 'attachment',
+                    controller: 'Attachment'
                 },
             ]
         }

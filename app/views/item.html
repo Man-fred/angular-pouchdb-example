@@ -3,20 +3,9 @@
 <ul>
     <li ng-repeat="doc in docs track by doc._rev">
         <div>
+            {{doc.title}} ({{doc.brand}})
             <button ng-click="deleteDoc(doc)" class="btn btn-small btn-danger">delete</button>
             <button ng-click="editDoc(doc._id)" class="btn btn-small btn-primary">edit</button>
-            {{doc.title}} ({{doc.brand}})
         </div>
     </li>
 </ul>
-
-<button class="btn" ng-click="showLogs = !showLogs">toggle Logs</button>
-<div ng-show="showLogs">
-<hr>
-<br><br>
-    <ul>
-        <li ng-repeat="log in logs| orderBy:'seq':true">
-            <pre>{{log| json}}</pre>
-        </li>
-    </ul>
-</div>

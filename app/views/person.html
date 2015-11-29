@@ -3,9 +3,9 @@
 <ul>
     <li ng-repeat="doc in docs track by doc._rev">
         <div>
+            {{doc.title}} ({{doc.date}}) 
             <input ng-click="deleteDoc(doc)" type="button" class="btn btn-small btn-danger" value="delete" />
             <input ng-click="editDoc(doc._id)" type="submit" class="btn btn-small btn-primary" value="edit" />
-            -{{doc.type}}-{{doc.item_id}}-{{doc.theme_id}}-{{doc.title}} ({{doc.date}})
         </div>
     </li>
 </ul>

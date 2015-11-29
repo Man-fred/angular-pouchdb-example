@@ -1,0 +1,38 @@
+<div class="container">
+    <h1>Theme detail</h1>
+
+    <form novalidate="novalidate" class="form-horizontal">
+        <fieldset>
+            <legend>{{view.form}}</legend>
+        <div class="control-group">
+            <label class="control-label" for="inputTitle">Item:</label>
+            <div class="controls">
+                <input type="text" id="inputTitle" ng-model="doc.title"/>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="inputRecurrence">Recurrence:</label>
+            <input class="controls" type="checkbox" id="inputRecurrence" ng-model="doc.recurrence"/>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="inputLastName">Recurrence (days):</label>
+            <div class="controls">
+                <input type="text" id="inputLastName" ng-model="doc.recurrenceDays"/>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="inputLastName">Recurrence (months):</label>
+            <div class="controls">
+                <input type="text" id="inputLastName" ng-model="doc.recurrenceMonths"/>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="inputLastName">Recurrence (years):</label>
+            <div class="controls">
+                <input type="text" id="inputLastName" ng-model="doc.recurrenceYears"/>
+            </div>
+        </div>
+    <div ng-include="'views/_doc.html'"></div>
+    </form>
+</div>
+    

@@ -1,5 +1,13 @@
-        ID: {{doc._id}}<br>
-        editedAt:{{doc.editedAt| date:'medium'}}<br>
-        createdAt:{{doc.createdAt| date:'medium'}}<br>
-        <button class="btn" ng-click="delete(doc, $index)">delete</button>
-        <button class="btn" ng-click="doc.editMode = true" ng-if="!theme.editMode">edit</button>
+<div class="control-group">
+    <div class="controls">
+        <!-- user-detail.html: -->
+        <button ng-click="cancel()" class="btn btn-small">return to list</button>
+        <button ng-click="updateDoc(doc)" class="btn btn-small btn-primary">update item</button>
+        <button ng-click="editDoc('-1')" class="btn btn-small btn-primary">create new item</button>
+        <button ng-click="deleteDoc(doc)" class="btn btn-small btn-primary">delete item</button>
+    </div>
+</div>
+<br />
+ID: {{doc._id}}<br>
+editedAt:{{doc.editedAt| date:'medium'}}<br>
+createdAt:{{doc.createdAt| date:'medium'}}<br>

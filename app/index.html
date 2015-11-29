@@ -34,16 +34,7 @@
                     <button ng-click="changeLanguage('en')" translate="BUTTON_TEXT_EN">english</button>
                 </div>
                 <navigation></navigation>
-                <ul class="nav nav-pills pull-right">
-                    <li class="active"><a ng-href="#/item">Item</a></li>
-                    <li class="active"><a ng-href="#/cost">Cost</a></li>
-                    <li><a ng-href="#/">Home</a></li>
-                    <li><a ng-href="#/attachment">Attachments</a></li>
-                    <li><a ng-href="#/theme">Theme</a></li>
-                    <li><a ng-href="#/about">About</a></li>
-                    <li><a ng-href="#/main">Contact</a></li>
-                </ul>
-                <h3 class="text-muted">pouchTest</h3>
+                <h3 class="text-muted"></h3>
             </div>
 
             <div ng-view=""></div>
@@ -69,18 +60,19 @@
         <script src="bower_components/jquery-ui/jquery-ui.min.js"></script>
         <script src="bower_components/moment.js"></script>
         <script src="bower_components/angular/angular.js"></script>
+        <script src="bower_components/angular-route/angular-route.js"></script>
+        <script src="bower_components/angular-translate/angular-translate.min.js"></script>
         <script src="bower_components/json3/lib/json3.js"></script>
         <script src="bower_components/bootstrap/js/bootstrap.js"></script>
-        <script src="bower_components/angular/angular-resource.js"></script>
-        <script src="bower_components/angular/angular-cookies.js"></script>
-        <script src="bower_components/angular/angular-sanitize.js"></script>
-        <script src="bower_components/angular/angular-animate.js"></script>
-        <script src="bower_components/angular/angular-touch.js"></script>
-        <script src="bower_components/angular/angular-route.js"></script>
-        <script src="bower_components/angular/angular-file-upload.min.js"></script>
-        <script src="bower_components/angular/i18n/angular-locale_de-de.js"></script>
-        <script src="bower_components/pouchdb/pouchdb.min.js"></script>
-        <script src="bower_components/pouchdb/pouchdb.find.min.js"></script>
+        <script src="bower_components/angular-resource/angular-resource.js"></script>
+        <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+        <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+        <script src="bower_components/angular-animate/angular-animate.js"></script>
+        <script src="bower_components/angular-touch/angular-touch.js"></script>
+        <script src="bower_components/angular-file-upload/dist/angular-file-upload.min.js"></script>
+        <script src="bower_components/angular-i18n/__angular-locale_de-de.js"></script>
+        <script src="bower_components/pouchdb/dist/pouchdb.min.js"></script>
+        <script src="bower_components/pouchdb-find/dist/pouchdb.find.min.js"></script>
         <!-- endbower -->
         <!-- endbuild -->
 
@@ -92,10 +84,35 @@
         <script src="scripts/controllers/theme.js"></script>
         <script src="scripts/controllers/item.js"></script>
         <script src="scripts/controllers/cost.js"></script>
+        <script src="scripts/controllers/todo.js"></script>
+        <script src="scripts/controllers/person.js"></script>
         <script src="scripts/controllers/about.js"></script>
         <script src="scripts/controllers/translate.js"></script>
         <script src="scripts/services/pouchdb.js"></script>
         <script src="scripts/services/todoservice.js"></script>
         <!-- endbuild -->
+<script>
+jQuery(function($){
+        $.datepicker.regional['de'] = {clearText: 'löschen', clearStatus: 'aktuelles Datum löschen',
+                closeText: 'schließen', closeStatus: 'ohne Änderungen schließen',
+                prevText: '<zurück', prevStatus: 'letzten Monat zeigen',
+                nextText: 'Vor>', nextStatus: 'nächsten Monat zeigen',
+                currentText: 'heute', currentStatus: '',
+                monthNames: ['Januar','Februar','März','April','Mai','Juni',
+                'Juli','August','September','Oktober','November','Dezember'],
+                monthNamesShort: ['Jan','Feb','Mär','Apr','Mai','Jun',
+                'Jul','Aug','Sep','Okt','Nov','Dez'],
+                monthStatus: 'anderen Monat anzeigen', yearStatus: 'anderes Jahr anzeigen',
+                weekHeader: 'Wo', weekStatus: 'Woche des Monats',
+                dayNames: ['Sonntag','Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag'],
+                dayNamesShort: ['So','Mo','Di','Mi','Do','Fr','Sa'],
+                dayNamesMin: ['So','Mo','Di','Mi','Do','Fr','Sa'],
+                dayStatus: 'Setze DD als ersten Wochentag', dateStatus: 'Wähle D, M d',
+                dateFormat: 'dd.mm.yy', firstDay: 1, 
+                initStatus: 'Wähle ein Datum', isRTL: false};
+        $.datepicker.setDefaults($.datepicker.regional['de']);
+});
+</script>
+
     </body>
 </html>

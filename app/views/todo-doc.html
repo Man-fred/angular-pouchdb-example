@@ -1,39 +1,39 @@
 <div class="container">
-    <h1 translate="COST_H1"></h1>
+    <h1>{{view.h1}}</h1>
 
     <form novalidate="novalidate" class="form-horizontal">
         <fieldset>
-            <legend translate="{{view.form}}"></legend>
+            <legend>{{view.form}}</legend>
             <div class="control-group">
-                <label for="input_item_id">{{ "Item" | translate }}:</label>
+                <label for="input_item_id">Item:</label>
                 <select id="input_item_id" ng-options="item._id as item.title for item in availableItems" 
                         ng-model="doc.item_id">
                 </select>
             </div>
             <div class="control-group">
-                <label class="control-label" for="inputTheme">{{"Theme" | translate }}:</label>
+                <label class="control-label" for="inputTheme">Theme:</label>
                 <select id="inputTitle" ng-options="theme._id as theme.title for theme in availableThemes" 
                         ng-model="doc.theme_id">
                 </select>
             </div>
             <div class="control-group">
-                <label class="control-label" for="inputTitle">{{"Title" | translate }}:</label>
+                <label class="control-label" for="inputTitle">Title:</label>
                 <input class="controls" type="text" id="inputTitle" ng-model="doc.title"/>
             </div>
             <div class="control-group">
-                <label class="control-label" for="inputDate">{{"Date" | translate }}:</label>
+                <label class="control-label" for="inputDate">Date:</label>
                 <input class="controls" type="text" id="inputDate" ng-model="doc.date"/>
             </div>
             <div class="control-group">
-                <label class="control-label" for="inputChecked">{{"Checked" | translate }}:</label>
+                <label class="control-label" for="inputChecked">Checked:</label>
                 <input class="controls" type="checkbox" id="inputChecked" ng-model="doc.checked"/>
             </div>
             <div class="control-group">
-                <label class="control-label" for="inputFirstName">{{"Cost" | translate }} (€):</label>
+                <label class="control-label" for="inputFirstName">Cost (€):</label>
                 <input class="controls" type="text" id="inputFirstName" ng-model="doc.cost"/>
             </div>
             <div class="control-group">
-                <label class="control-label" for="inputLastName">{{"Info" | translate }}:</label>
+                <label class="control-label" for="inputLastName">Info:</label>
                 <input class="controls" type="text" id="inputLastName" ng-model="doc.info"/>
             </div>
         <div class="control-group">

@@ -11,11 +11,11 @@
 'use strict';
 
 angular.module('pouchTestApp')
-        .controller('CostCtrl', function ($scope, $rootScope, $filter, pouchdb, pdb, $location) {
+        .controller('TodoCtrl', function ($scope, $rootScope, $filter, pouchdb, pdb, $location) {
 
             $scope.docs = [];
             $scope.logs = [];
-            var ctrlName = 'cost';
+            var ctrlName = 'todo';
             $scope.deleteDoc = function (doc) {
                 if (confirm("Wollen Sie den Datensatz löschen?") === true) {
                     pdb.removeDoc(doc)
@@ -40,9 +40,11 @@ angular.module('pouchTestApp')
             };
             $scope.find();
         })
-        .controller('CostDocCtrl', function ($scope, $rootScope, $routeParams, pdb, $location) {
+        .controller('TodoDocCtrl', function ($scope, $rootScope, $routeParams, pdb, $location) {
             $scope.view = {
-                ctrl: 'cost'
+                h1: 'Todos',
+                form: 'Todo with ...',
+                ctrl: 'todo'
             };
             $scope.deleteDoc = function (doc) {
                 if (confirm("Wollen Sie den Datensatz löschen?") === true) {
@@ -52,16 +54,11 @@ angular.module('pouchTestApp')
             };
             // callback for ng-click 'editDoc', new doc:
             $scope.editDoc = function (id) {
-                $location.path('/' + $scope.view.ctrl + '-doc/-1');
+                $location.path('/' + $scope.view.ctrl + '-doc/' + id);
             };
             // callback for ng-click 'cancel':
             $scope.cancel = function () {
-                if ($rootScope.fromLocation) {
-                    $location.path('/' + $rootScope.fromLocation);
-                    $rootScope.fromLocation = "";
-                } else {
-                    $location.path('/' + $scope.view.ctrl);
-                }
+                $location.path('/' + $scope.view.ctrl);
             };
             $scope.updateDoc = function (form) {
                 pdb.putDoc($scope.view.ctrl, form)

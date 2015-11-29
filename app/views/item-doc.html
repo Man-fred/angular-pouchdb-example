@@ -2,60 +2,62 @@
     <h1>Item detail</h1>
 
     <form novalidate="novalidate" class="form-horizontal">
-        <div class="control-group">
-            <label class="control-label" for="inputFirstName">Item:</label>
-            <div class="controls">
-                <input type="text" id="inputFirstName" ng-model="doc.title"/>
+        <fieldset>
+            <legend>{{view.form}}</legend>
+            <div class="control-group">
+                <label class="control-label" for="inputFirstName">Item:</label>
+                <input class="controls" type="text" id="inputFirstName" ng-model="doc.title"/>
             </div>
-        </div>
-        <div class="control-group">
-            <label class="control-label" for="inputFirstName">Brand:</label>
-            <div class="controls">
-                <input type="text" id="inputFirstName" ng-model="doc.brand"/>
+            <div class="control-group">
+                <label class="control-label" for="inputFirstName">Brand:</label>
+                <input class="controls" type="text" id="inputFirstName" ng-model="doc.brand"/>
             </div>
-        </div>
-        <div class="control-group">
-            <label class="control-label" for="inputFirstName">Initial registration:</label>
-            <div class="controls">
-                <input type="text" id="inputFirstName" ng-model="doc.initialRegistration"/>
+            <div class="control-group">
+                <label class="control-label" for="inputFirstName">Initial registration:</label>
+                <input class="controls" type="text" id="inputFirstName" ng-model="doc.initialRegistration"/>
             </div>
-        </div>
-        <div class="control-group">
-            <label class="control-label" for="inputFirstName">Purchase:</label>
-            <div class="controls">
-                <input type="text" id="inputFirstName" ng-model="doc.purchase"/>
+            <div class="control-group">
+                <label class="control-label" for="inputFirstName">Purchase:</label>
+                <input class="controls" type="text" id="inputFirstName" ng-model="doc.purchase"/>
             </div>
-        </div>
-        <div class="control-group">
-            <label class="control-label" for="inputLastName">Actions:</label>
-            <div class="controls">
-                <input type="text" id="inputLastName" ng-model="doc.actions"/>
+            <div class="control-group">
+                <label class="control-label" for="inputPerson">Person:</label>
+                <select id="inputTitle" ng-options="person._id as person.title for person in availablePersons" 
+                        ng-model="doc.person_id">
+                </select>
             </div>
-        </div>
-        <div class="control-group">
-            <div class="controls">
-              <!-- user-detail.html: -->
-                <button ng-click="cancel()" class="btn btn-small">return to list</button>
-                <button ng-click="updateDoc(doc)" class="btn btn-small btn-primary">update item</button>
-
-              <!-- user-creation.html: -->
-                <button ng-click="editDoc('-1')" class="btn btn-small btn-primary">create new item</button>
+            <div class="control-group">
+                <label class="control-label" for="inputLastName">Actions:</label>
+                <input class="controls" type="text" id="inputLastName" ng-model="doc.actions"/>
             </div>
-        </div>
-        <div>
-            <h3>Costs</h3>
-            <button ng-click="editCost('-1')" class="btn btn-small">create new cost</button>
-            <ul>
-                <li ng-repeat="cost in costs track by cost._rev">
-                    <div>
-                        <button ng-click="deleteCost(cost)" class="btn btn-small btn-danger">delete</button>
-                        <button ng-click="editCost(cost._id)" class="btn btn-small btn-primary">edit</button>
-                        {{cost.title}} ({{cost.theme}})
-                    </div>
-                </li>
-            </ul>
-        </div>
+            <div ng-include="'views/_doc.html'"></div>
+        </fieldset>
     </form>
-    <div ng-include="'views/_doc.html'"></div>
+    <div>
+        <h3>Costs</h3>
+        <button ng-click="editCost('-1')" class="btn btn-small">create new cost</button>
+        <ul>
+            <li ng-repeat="cost in costs track by cost._rev">
+                <div>
+                    {{cost.title}} ({{cost.theme}})
+                    <button ng-click="deleteCost(cost)" class="btn btn-small btn-danger">delete</button>
+                    <button ng-click="editCost(cost)" class="btn btn-small btn-primary">edit</button>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div>
+        <h3>Todos</h3>
+        <button ng-click="editTodo('-1')" class="btn btn-small">create new todo</button>
+        <ul>
+            <li ng-repeat="todo in todos track by todo._rev">
+                <div>
+                    {{todo.title}} ({{todo.theme}})
+                    <button ng-click="deleteTodo(cost)" class="btn btn-small btn-danger">delete</button>
+                    <button ng-click="editTodo(cost)" class="btn btn-small btn-primary">edit</button>
+                </div>
+            </li>
+        </ul>
+    </div>
 </div>
-    
+
